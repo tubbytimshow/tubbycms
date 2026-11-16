@@ -345,3 +345,72 @@ html.dark .badge-drawer-button {
         opacity: .1;
     }
 }
+
+/*
+ * Tubby Hotel shell.
+ *
+ * The markup is untouched Atom CMS: these rules only swap the paper-white surfaces for smoked
+ * glass and put the matrix rain (js/src/matrix.js) behind everything. Dark is the default via
+ * cms_color_mode in the housekeeping settings, and the theme switcher still offers light.
+ */
+
+#matrix-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.32;
+}
+
+html.dark body.site-bg {
+    background-color: #04070a;
+    background-image: none;
+}
+
+/* The shell and the page wrapper are opaque greys by default: let the rain through. */
+html.dark #app {
+    background-color: transparent;
+}
+
+html.dark body,
+html.dark #app,
+html.dark footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Cards and panels: smoked glass over the falling code. */
+html.dark .bg-white,
+html.dark .bg-gray-50,
+html.dark .bg-gray-100 {
+    background-color: rgba(8, 17, 13, 0.82);
+    border-color: rgba(0, 255, 102, 0.16);
+    color: #d7e7de;
+    backdrop-filter: blur(7px);
+}
+
+html.dark .bg-gray-200 {
+    background-color: rgba(13, 26, 20, 0.8);
+}
+
+/* Form fields shouldn't flash white. */
+html.dark input:not([type='checkbox']):not([type='radio']):not([type='range']),
+html.dark textarea,
+html.dark select {
+    background-color: rgba(5, 12, 9, 0.85);
+    border-color: rgba(0, 255, 102, 0.22);
+    color: #e3f2ea;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+    color: #6f8579;
+}
+
+/* Thin dark scrollbars to match the shell. */
+html.dark * {
+    scrollbar-color: #1d3b2c #04070a;
+    scrollbar-width: thin;
+}

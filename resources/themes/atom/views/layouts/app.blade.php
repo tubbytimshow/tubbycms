@@ -26,6 +26,9 @@
 </head>
 
 <body class="flex min-h-screen flex-col site-bg dark:bg-gray-800">
+    {{-- Tubby Hotel: the matrix rain canvas, kept behind the UI by css/app.css --}}
+    <canvas id="matrix-background" aria-hidden="true"></canvas>
+
     @if(config('habbo.site.debug_mode_enabled') && config('habbo.site.site_environment') === 'production')
         <div class="w-full py-2 px-4 text-center rounded text-white bg-red-500">
             {{ __('It seems like debug mode is enabled while being in production. It is heavily recommended too set APP_DEBUG in the .env file to false in production mode') }}
@@ -88,7 +91,8 @@
     @endif
 
 
-    @if (setting('cms_color_mode') === 'dark')
+    {{-- Dark is the default look; the theme switcher still lets a visitor choose light. --}}
+    @if (setting('cms_color_mode') !== 'light')
         <script>
             if (localStorage.getItem("theme") === null) {
                 document.documentElement.classList.add("dark");
